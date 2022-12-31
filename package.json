@@ -2,7 +2,7 @@
   "name": "@nikola_jacques/shared-types",
   "version": "1.0.0",
   "description": "types shared between different components of error logger app (delivery module <-> back end & front end <-> backend)",
-  "main": "error-logger.d.ts",
+  "main": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
