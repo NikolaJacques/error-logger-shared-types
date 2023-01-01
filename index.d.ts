@@ -51,6 +51,17 @@ declare module "frontend-backend" {
 
     // shared between back end and front end
 
+    interface ErrorLogInterface {
+        appId: string,
+        sessionId: string,
+        message: string,
+        name: string,
+        stack: string,
+        actions: object[],
+        browserVersion: string,
+        timestamp: Date
+    }
+
     export interface AdminAuthRequest {
         name: string,
         password: string,
