@@ -51,7 +51,7 @@ declare module "frontend-backend" {
 
     // shared between back end and front end
 
-    interface ErrorLogInterface {
+    export interface ErrorLogInterface {
         appId: string,
         sessionId: string,
         message: string,
