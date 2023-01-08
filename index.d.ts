@@ -24,6 +24,15 @@ declare module "delivery-backend" {
         appSecret: string
     }
 
+    export interface Actions {
+        target: {
+            localName: string;
+            id: string;
+            className: string;
+        },
+        type: string;
+    }
+
     export interface ErrorReportInterface {
         message: string,
         name: string,
