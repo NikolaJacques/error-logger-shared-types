@@ -24,20 +24,11 @@ declare module "delivery-backend" {
         appSecret: string
     }
 
-    export interface Action {
-        target: {
-            localName: string;
-            id: string;
-            className: string;
-        },
-        type: string;
-    }
-
     export interface ErrorReportInterface {
         message: string,
         name: string,
         stack: string,
-        actions: Action[],
+        actions: object[],
         browserVersion: string,
         timestamp: number
     }
@@ -60,13 +51,22 @@ declare module "frontend-backend" {
 
     // shared between back end and front end
 
+    export interface Action {
+        target: {
+            localName: string;
+            id: string;
+            className: string;
+        },
+        type: string;
+    }
+
     export interface ErrorLogInterface {
         appId: string,
         sessionId: string,
         message: string,
         name: string,
         stack: string,
-        actions: object[],
+        actions: Action[],
         browserVersion: string,
         timestamp: Date
     }
