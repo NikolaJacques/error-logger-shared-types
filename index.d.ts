@@ -24,7 +24,7 @@ declare module "delivery-backend" {
         appSecret: string
     }
 
-    export interface Actions {
+    export interface Action {
         target: {
             localName: string;
             id: string;
@@ -37,7 +37,7 @@ declare module "delivery-backend" {
         message: string,
         name: string,
         stack: string,
-        actions: object[],
+        actions: Action[],
         browserVersion: string,
         timestamp: number
     }
