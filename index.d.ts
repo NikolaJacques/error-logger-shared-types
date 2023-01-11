@@ -17,7 +17,7 @@ declare module "intersection" {
         stack: string,
         actions: ActionType[],
         browserVersion: string,
-        timestamp: number
+        timestamp: number|Date
     }
     
     export interface ExtendedErrorLogType extends ErrorLogType {
