@@ -11,16 +11,16 @@ declare module "intersection" {
         type: string;
     }
     
-    export interface ErrorLogType {
+    export interface ErrorLogType<U> {
         message: string,
         name: string,
         stack: string,
         actions: ActionType[],
         browserVersion: string,
-        timestamp: number|Date
+        timestamp: U
     }
     
-    export interface ExtendedErrorLogType extends ErrorLogType {
+    export interface ExtendedErrorLogType<U> extends ErrorLogType<U> {
         appId: string,
         sessionId: string
     }
@@ -54,11 +54,11 @@ declare module "delivery-backend" {
         appSecret: string
     }
 
-    export interface ErrorReportInterface extends ErrorLogType {
+    export interface ErrorReportInterface extends ErrorLogType<number> {
         // preserve local name to avoid breaking change
     }
 
-    export interface RequestBodyInterface extends ExtendedErrorLogType {
+    export interface RequestBodyInterface extends ExtendedErrorLogType<number> {
         // preserve local name to avoid breaking change
     }
 
@@ -81,7 +81,7 @@ declare module "frontend-backend" {
         // preserve local name to avoid breaking change
     }
 
-    export interface ErrorLogInterface extends ExtendedErrorLogType {
+    export interface ErrorLogInterface extends ExtendedErrorLogType<Date> {
         // preserve local name to avoid breaking change
     }
 
@@ -98,7 +98,7 @@ declare module "frontend-backend" {
         sessionId: string,
         timestamp: Date,
         totalErrors: number,
-        errors: ExtendedErrorLogType[]
+        errors: ExtendedErrorLogType<Date>[]
     }
 
     export interface AdminAuthRequest {
