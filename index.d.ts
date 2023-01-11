@@ -96,7 +96,7 @@ declare module "frontend-backend" {
 
     export interface SessionViewType {
         sessionId: string,
-        date: Date,
+        timestamp: Date,
         totalErrors: number,
         errors: ExtendedErrorLogType[]
     }
