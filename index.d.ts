@@ -81,7 +81,7 @@ declare module "frontend-backend" {
         // preserve local name to avoid breaking change
     }
 
-    export interface AtomicViewType extends ExtendedErrorLogType {
+    export interface ErrorLogInterface extends ExtendedErrorLogType {
         // preserve local name to avoid breaking change
     }
 
