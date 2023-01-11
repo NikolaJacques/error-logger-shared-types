@@ -102,7 +102,7 @@ declare module "frontend-backend" {
         sessionId: string,
         timestamp: string,
         totalErrors: number,
-        errors: ExtendedErrorLogType<Date>[]
+        errors: AtomicViewType[]
     }
 
     export interface AdminAuthRequest {
