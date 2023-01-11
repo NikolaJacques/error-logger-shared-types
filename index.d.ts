@@ -85,6 +85,10 @@ declare module "frontend-backend" {
         // preserve local name to avoid breaking change
     }
 
+    export interface AtomicViewType extends ExtendedErrorLogType<string>{
+        // same as ErrorLogInterface except timestamp is string format
+    }
+
     export interface ErrorViewType {
         name: string,
         message: string,
@@ -96,7 +100,7 @@ declare module "frontend-backend" {
 
     export interface SessionViewType {
         sessionId: string,
-        timestamp: Date,
+        timestamp: string,
         totalErrors: number,
         errors: ExtendedErrorLogType<Date>[]
     }
