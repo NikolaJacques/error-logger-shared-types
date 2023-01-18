@@ -25,6 +25,11 @@ declare module "intersection" {
         sessionId: string
     }
 
+    export interface TimestampOptions {
+        format?: string,
+        timezone?: string
+    }
+
 }
 
 declare module "delivery-backend" {
@@ -33,7 +38,7 @@ declare module "delivery-backend" {
 
     import { Query, Send } from 'express-serve-static-core';
     import * as express from 'express';
-    import { ErrorLogType, ExtendedErrorLogType } from 'intersection';
+    import { ErrorLogType, ExtendedErrorLogType, TimestampOptions } from 'intersection';
 
     export interface TypedRequest<T, U extends Query> extends express.Request{
         body: T,
@@ -64,18 +69,13 @@ declare module "delivery-backend" {
 
     export type ErrorResponseType = Error & {statusCode: number};
 
-    export interface TimestampOptions {
-        format?: string,
-        timezone?: string
-    }
-
 }
 
 declare module "frontend-backend" {
 
     // shared between back end and front end
 
-    import { ActionType, ExtendedErrorLogType } from 'intersection';
+    import { ActionType, ExtendedErrorLogType, TimestampOptions } from 'intersection';
 
     export interface Action extends ActionType {
         // preserve local name to avoid breaking change
@@ -121,6 +121,18 @@ declare module "frontend-backend" {
         page: string, 
         limit: string, 
         view: ViewType
+    }
+    
+    export interface ErrorResponseType {message: string}
+    
+    export interface SuccessResponseType extends ErrorResponseType {logs: any[], total:number}
+
+    type Role = 'user' | 'admin' | 'super admin';
+
+    export interface ProjectRequest {
+        name: string,
+        description?: string,
+        timestampOptions?: TimestampOptions
     }
 
 }
