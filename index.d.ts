@@ -123,9 +123,7 @@ declare module "frontend-backend" {
         view: ViewType
     }
     
-    export interface ErrorResponseType {message: string}
-    
-    export interface SuccessResponseType extends ErrorResponseType {logs: any[], total:number}
+    export interface SuccessResponseType {message: string, logs: any[], total:number}
 
     type Role = 'user' | 'admin' | 'super admin';
 
