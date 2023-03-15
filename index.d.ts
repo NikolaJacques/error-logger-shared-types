@@ -38,7 +38,6 @@ declare module "delivery-backend" {
 
     import { Query, Send } from 'express-serve-static-core';
     import * as express from 'express';
-    import { ErrorLogType, ExtendedErrorLogType, TimestampOptions } from 'intersection';
 
     export interface TypedRequest<T, U extends Query> extends express.Request{
         body: T,
@@ -59,14 +58,6 @@ declare module "delivery-backend" {
         appSecret: string
     }
 
-    export interface ErrorReportInterface extends ErrorLogType<number> {
-        // preserve local name to avoid breaking change
-    }
-
-    export interface RequestBodyInterface extends ExtendedErrorLogType<number> {
-        // preserve local name to avoid breaking change
-    }
-
     export type ErrorResponseType = Error & {statusCode: number};
 
 }
@@ -75,19 +66,7 @@ declare module "frontend-backend" {
 
     // shared between back end and front end
 
-    import { ActionType, ExtendedErrorLogType, TimestampOptions } from 'intersection';
-
-    export interface Action extends ActionType {
-        // preserve local name to avoid breaking change
-    }
-
-    export interface ErrorLogInterface extends ExtendedErrorLogType<Date> {
-        // preserve local name to avoid breaking change
-    }
-
-    export interface AtomicViewType extends ExtendedErrorLogType<string>{
-        // same as ErrorLogInterface except timestamp is string format
-    }
+    import { ExtendedErrorLogType, TimestampOptions } from 'intersection';
 
     export interface ErrorViewType {
         name: string,
@@ -102,7 +81,7 @@ declare module "frontend-backend" {
         sessionId: string,
         timestamp: string,
         totalErrors: number,
-        errors: AtomicViewType[]
+        errors: ExtendedErrorLogType<string>[]
     }
 
     export interface AdminAuthRequest {
