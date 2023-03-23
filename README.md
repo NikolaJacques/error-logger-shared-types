@@ -23,7 +23,6 @@
 
 ## The motivation & the problem
 <div id="heading--1-1"></div>
-</br>
 
 ### 1. The advice
 
@@ -31,7 +30,6 @@ A friend who has years of experience in web development had two pieces of advice
 
 I applied these principles when creating a simple front end webpage for consuming a third-party API. I created a simple function that would record an error's stack trace, add a timesamp to it and add this information to an array in local storage. The user would see the error displayed and could send an error report by clicking on the appropriate button in the page's footer, which would open up a modal with a form. The form information was sent along with the error stack to an email service that would create an email according to a template and send it to the appropriate recipient. This worked well when it was used: the origin of the sole error reported was identified in less than 5 minutes and fixed later that day (the error was due to a discrepancy in brower versions and backwards compatibility).
 <div id="heading--1-2"></div>
-</br>
 
 ### 2. The problem
 
@@ -39,13 +37,11 @@ The error reporting form worked well in principle but it wasn't being used in pr
 
 The solution was to come up with an error logging solution that could be incorporated into the code and ensure that error logging and reporting happens independently of user input.
 <div id="heading--1-3"></div>
-</br>
 
 ### 3. A use case for building a full stack app
 
 As a self-taught student of web development, the error logger tool appealed to me because it spans the full stack of web development, it solves a business problem, and is part of the software developer's priviledge of being able to create and customize the tools for the job, one of the aspects of software development that appeals to me the most.
 <div id="heading--1-4"></div>
-</br>
 
 ### 4. A tool to be used with other projects
 
@@ -54,7 +50,6 @@ The tool originated from a problem on a specific project, but it was designed wi
 </br>
 
 ## The app components and what it does
-</br>
 
 **Components**
 
@@ -129,7 +124,6 @@ This tool was created for the most part along the lines of my own ideas of what 
 
 ## Modules
 <div id="heading--5-1"></div>
-</br>
 
 ### 1. The delivery module
 
@@ -137,7 +131,6 @@ The delivery module contains a library of methods for connecting to the server, 
 </br>
 
 **Methods**
-</br>
 
 **init([options])**
 
@@ -231,7 +224,7 @@ TraceAll implements trace for all subsequent event listeners declared in addEven
 <div id="heading--5-2"></div>
 </br>
 
-### 2.The back end (core) module
+### 2. The back end (core) module
 
 The back end (or core) module is a REST API that processes requests for app authentication (apps using the delivery module), user authentication, adding logs, as well as viewing logs and viewing projects. (The same server also contains the logic for the webhook module which is documented later explained later in this file.)
 </br>
@@ -400,7 +393,7 @@ example:
 Views are ways the error log information is aggregated and served to the consumer of the API. Each view represents a query on the back end (a MondoDB aggregation pipeline) and the structure of the data output to the API consumer.
 </br>
 
-**atomic**
+**- atomic**
 
 The 'atomic' view returns an array of logs of type `ExtendedErrorLogType<Date>`, i.e. without aggregation.
 
@@ -424,7 +417,7 @@ interface ExtendedErrorLogType<U> extends ErrorLogType<U> {
 ```
 </br>
 
-**error**
+**- error**
 
 The 'error' view returns an array of logs aggregated according to error type. It checks the first two 'tokens' in the stack trace string for equivalence (e.g. `Error: error message at lambdaFunction(line:position)`)
 
@@ -442,7 +435,7 @@ interface ErrorViewType {
 ```
 </br>
 
-**session**
+**- session**
 
 The 'session' view returns an array of logs aggregated according to user session. Each user session receives a unique UUID to identify it by.
 
@@ -460,7 +453,6 @@ interface SessionViewType {
 </br>
 
 ### 3. The webhook module
-</br>
 
 **back end or core server**
 
@@ -475,7 +467,7 @@ The resulting array is then filtered according to the 'events' to the project's 
 Each event in the resulting array is then processed by an event handler. For each event in the array, the event handler makes the call to the appropriate service and logs the result of the call. The information logged is the event id, response status, payload and timestamp.
 
 The module is built to handle various event types but currently only includes a 'newLog' event that occurs when a new error appears and makes a call to a Monday.com API service.
-</br>
+</br></br>
 
 **Monday.com API module**
 
@@ -528,4 +520,4 @@ The front end UI is a simple single page app that uses Reacts's Material UI libr
 
 ## License
 
-[MIT license]('https://opensource.org/license/mit/')
+[MIT license](https://opensource.org/license/mit/)
