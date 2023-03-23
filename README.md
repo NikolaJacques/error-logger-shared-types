@@ -514,7 +514,7 @@ The idea of creating a REST API was to decouple the data-producing and data-cons
 
 **Front end UI**
 
-The front end UI is a simple single page app that uses Reacts's Material UI library. It display the log data according to different query parameters such as date and view. It contains a login route and a main route that allows the user to view the data.
+The front end UI is a simple single page app that uses Reacts's Material UI library. It displays the log data according to different query parameters such as date and view. It contains a login route and a main route that allows the user to view the data.
 <div id="heading--6"></div>
 </br>
 
