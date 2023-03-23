@@ -129,11 +129,26 @@ The delivery module contains a library of methods for connecting to the server, 
 **init([options])**
 
 Initializes a session with the back end server. Returns a promise.
-
-| Property | Description | Type | Default |
-|-----------------------------------------|
-| appId | ObjectId number of project in database | string | no default |
-| appSecret | App secret for project | string | no default |
+<table>
+    <tr>
+        <th>Property</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Default</th>
+    </tr>
+    <tr>
+        <td>appId</td>
+        <td>ObjectId number of project in database</td>
+        <td>string</td>
+        <td>no default</td>
+    </tr>
+    <tr>
+        <td>appSecret</td>
+        <td>App secret for project</td>
+        <td>string</td>
+        <td>no default</td>
+    </tr>
+</table>
 
 **send([options])**
 
