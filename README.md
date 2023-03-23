@@ -335,6 +335,8 @@ interface SessionViewType {
 
 The webhook module is part of the back end core module. It consists in a MongoDB change stream that watches the logs collection for new inserts. The change stream implements resume tokens in the event the change stream closes unexpectedly.
 
+The design was inspired by an [interview with the founder and CEO of Svix](https://www.youtube.com/watch?v=4jvV75OD620), a webhook service company.
+
 Each time a new insert occurs, it is piped through an async events pipe that contains filters for all applicable events in the form if handlers (each handler in the event pipe filters for a particular event). 
 
 The resulting array is then filtered according to the 'events' to the project's subscribed events. 
