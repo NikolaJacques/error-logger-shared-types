@@ -18,8 +18,9 @@
     5. [Front end examples](#heading--5-5)
 - [License](#heading--6)
 
-## The motivation & the problem
 <div id="heading--1"></div>
+## The motivation & the problem
+
 
 ### 1. The advice
 <div id="heading--1-1"></div>
