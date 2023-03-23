@@ -22,34 +22,33 @@
 
 
 ## The motivation & the problem
-
+<div id="heading--1-1"></div>
 
 ### 1. The advice
-<div id="heading--1-1"></div>
 
 A friend who has years of experience in web development had two pieces of advice to give me as a beginner:put everything in a try / catch block and use logging. He said applying these pays dividends when it comes to dealing with errors later on.
 
 I applied these principles when creating a simple front end webpage for consuming a third-party API. I created a simple function that would record an error's stack trace, add a timesamp to it and add this information to an array in local storage. The user would see the error displayed and could send an error report by clicking on the appropriate button in the page's footer, which would open up a modal with a form. The form information was sent along with the error stack to an email service that would create an email according to a template and send it to the appropriate recipient. This worked well when it was used: the origin of the sole error reported was identified in less than 5 minutes and fixed later that day (the error was due to a discrepancy in brower versions and backwards compatibility).
+<div id="heading--1-2"></div>
 
 ### 2. The problem
-<div id="heading--1-2"></div>
 
 The error reporting form worked well in principle but it wasn't being used in practice, perhaps due to lack of user awareness, user habits, or it may simply not have been user-friendly enough. This meant that errors in production could potentially go unnoticed, which is bad for the user experience overall.
 
 The solution was to come up with an error logging solution that could be incorporated into the code and ensure that error logging and reporting happens independently of user input.
-
-### 3. A use case for building a full stack app
 <div id="heading--1-3"></div>
 
-As a self-taught student of web development, the error logger tool appealed to me because it spans the full stack of web development, it solves a business problem, and is part of the software developer's priviledge of being able to create and customize the tools for the job, one of the aspects of software development that appeals to me the most.
+### 3. A use case for building a full stack app
 
-### 4. A tool to be used with other projects
+As a self-taught student of web development, the error logger tool appealed to me because it spans the full stack of web development, it solves a business problem, and is part of the software developer's priviledge of being able to create and customize the tools for the job, one of the aspects of software development that appeals to me the most.
 <div id="heading--1-4"></div>
 
+### 4. A tool to be used with other projects
+
 The tool originated from a problem on a specific project, but it was designed with versatility and reusability in mind by applying a separation of concerns between the different components. The idea is to have a simple unique tool for monitoring all projects the user manages or is working on, and that can be expanded upon in the future. For the time being, the delivery module is written in Javascript and can only be used on a webpage app, but because of the modular approach, this can easily be expanded to other languages / media.
+<div id="heading--2"></div>
 
 ## The app components and what it does
-<div id="heading--2"></div>
 
 **Components**
 
@@ -70,9 +69,9 @@ Front end:
 - sends notifications for specific events on the core server to other services (back end or core module)
 - displays error log information in different ways (front end module)
 - receives event notifications and translates them to a request for a specific API (Monday module)
+<div id="heading--3"></div>
 
 ## What I learned
-<div id="heading--3"></div>
 
 **Shared types:**
 - creating a Typescript definitions file (.d.ts) with separate type modules
@@ -111,17 +110,17 @@ Front end:
 - test coverage
 - implementation of Auth0
 - bucketing in MongoDB (instead of aggregation)
-
-## Disclaimer
 <div id="heading--4"></div>
 
-This tool was created for the most part along the lines of my own ideas of what basic and useful service a logger tool should provide and does not attempt to mimic any existing software or functionality in any way (where it leans on other sources, credit is given). It is a learning project created for the purposes of demonstration and my own personal use. I make no warranty for the use of the code in this repository, in whole or in part. The code is delivered as is and is not guaranteed to be error-free.
+## Disclaimer
 
-## Modules
+This tool was created for the most part along the lines of my own ideas of what basic and useful service a logger tool should provide and does not attempt to mimic any existing software or functionality in any way (where it leans on other sources, credit is given). It is a learning project created for the purposes of demonstration and my own personal use. I make no warranty for the use of the code in this repository, in whole or in part. The code is delivered as is and is not guaranteed to be error-free.
 <div id="heading--5"></div>
 
-### 1. The delivery module
+## Modules
 <div id="heading--5-1"></div>
+
+### 1. The delivery module
 
 The delivery module contains a library of methods for connecting to the server, recording user (inter)actions prior to an error occurence, and sending the information to a server on the back end. It implements authentication using JWT, it includes exponential backoff and caching of unsuccessful requests in case of a bad connection or unsuccessful request.
 
@@ -175,9 +174,9 @@ type ActionType:
 **traceAll()**
 
 TraceAll implements trace for all subsequent event listeners declared in addEventListener.
+<div id="heading--5-2"></div>
 
 ### 2.The back end (core) module
-<div id="heading--5-2"></div>
 
 The back end (or core) module is a REST API that processes requests for app authentication (apps using the delivery module), user authentication, adding logs, as well as viewing logs and viewing projects. (The same server also contains the logic for the webhook module which is documented later explained later in this file.)
 
@@ -328,9 +327,9 @@ interface SessionViewType {
     errors: ExtendedErrorLogType<string>[]
 }
 ```
+<div id="heading--5-3"></div>
 
 ### 3. The webhook module
-<div id="heading--5-3"></div>
 
 **back end or core server**
 
@@ -351,9 +350,9 @@ The webhook currently only fires an event that makes a call to a Monday.com API 
 The Monday module service receives the call from the API, it checks that the payload's project ID and that stored in its memory match and that the payload timestamp isn't more than a day old.
 
 Once cleared, a call is created to the Monday.com GraphQL API with the information forwarded by the back end (core) server. If the call is successful, a bug appears with the log information in the 'bugs' group on the Monday.com project page. The result of the call is logged.
+<div id="heading--5-4"></div>
 
 ### 4. Shared types
-<div id="heading--5-4"></div>
 
 The shared types module contains all types / interfaces that are shared between different modules in the app. The common type definitions (.d.ts) file contains three Typescript modules:
 
@@ -378,17 +377,17 @@ The Typescript configuration (ts.config) file contains the following to import t
 ```
 
 The common types file defines the common data structures shared between the modules. It ensures that data exchanged between different modules is of the same type when sent and received.
+<div id="heading--5-5"></div>
 
 ### 5. Front end examples
-<div id="heading--5-5"></div>
 
 The idea of creating a REST API was to decouple the data-producing and data-consuming modules. Some coupling exists with the shared types file but the logic is separate. This way a variety of different UIs or services can consume the data according to the user's requirements without the need to re-write any of the back end logic.
 
 **Front end UI**
 
 The front end UI is a simple single page app that uses Reacts's Material UI library. It display the log data according to different query parameters such as date and view. It contains a login route and a main route that allows the user to view the data.
+<div id="heading--6"></div>
 
 ## License
-<div id="heading--6"></div>
 
 [MIT license]('https://opensource.org/license/mit/')
